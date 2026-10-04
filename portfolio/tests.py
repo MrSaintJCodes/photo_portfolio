@@ -315,6 +315,89 @@ class ImageProcessingTests(MediaTestCase):
 
 class SeedTests(MediaTestCase):
     @patch("portfolio.management.commands.import_portfolio_photos.download_image")
+    def test_bundled_import_populates_the_gallery_without_network_and_preserves_edits(self, download):
+        source_dir = Path(self.directory.name) / "bundled"
+        source_dir.mkdir()
+        manifest = json.loads((Path(__file__).resolve().parent.parent / "content/seed_photos.json").read_text())
+        for entry in manifest:
+            (source_dir / f"{entry['id']}.jpg").write_bytes(image_upload((120, 80)).read())
+        output = io.StringIO()
+        with patch("portfolio.management.commands.import_portfolio_photos.process_photo", wraps=process_photo) as process:
+            call_command("import_portfolio_photos", source_dir=str(source_dir), stdout=output)
+            self.assertEqual(process.call_count, 25)
+        self.assertEqual(Photo.objects.public().count(), 25)
+        self.assertEqual(Story.objects.count(), 3)
+        site = SiteSettings.objects.get()
+        self.assertEqual(site.hero_photo.flickr_id, "53984262444")
+        photo = site.hero_photo
+        original_source = photo.source.name
+        photo.title_en = "Owner's edited title"
+        photo.status = "draft"
+        photo.save()
+        site.hero_photo = Photo.objects.get(flickr_id="54689711439")
+        site.hero_focal_x = 42
+        site.biography_en = "Owner's edited biography"
+        site.save()
+        with patch("portfolio.management.commands.import_portfolio_photos.process_photo", wraps=process_photo) as process:
+            call_command("import_portfolio_photos", source_dir=str(source_dir), stdout=output)
+            process.assert_not_called()
+        download.assert_not_called()
+        photo.refresh_from_db()
+        site.refresh_from_db()
+        self.assertEqual(Photo.objects.count(), 25)
+        self.assertEqual(photo.source.name, original_source)
+        self.assertEqual(photo.title_en, "Owner's edited title")
+        self.assertEqual(photo.status, "draft")
+        self.assertEqual(site.hero_photo.flickr_id, "54689711439")
+        self.assertEqual(site.hero_focal_x, 42)
+        self.assertEqual(site.biography_en, "Owner's edited biography")
+
+    @patch("portfolio.management.commands.import_portfolio_photos.download_image")
+    def test_partial_bundled_import_waits_to_seed_services_until_retry_completes(self, download):
+        from .models import ServicePage, ServicePhoto
+
+        content = Path(__file__).resolve().parent.parent / "content"
+        manifest = json.loads((content / "seed_photos.json").read_text())
+        source_dir = Path(self.directory.name) / "bundled"
+        source_dir.mkdir()
+        for entry in manifest[:-1]:
+            (source_dir / f"{entry['id']}.jpg").write_bytes(image_upload((120, 80)).read())
+        options = {"source_dir": str(source_dir), "stdout": io.StringIO(), "stderr": io.StringIO()}
+        with self.assertRaisesMessage(CommandError, "Incomplete imports"):
+            call_command("import_portfolio_photos", **options)
+        self.assertEqual(Photo.objects.public().count(), 24)
+        self.assertFalse(Story.objects.exists())
+        self.assertFalse(ServicePage.objects.exists())
+        (source_dir / f"{manifest[-1]['id']}.jpg").write_bytes(image_upload((120, 80)).read())
+        call_command("import_portfolio_photos", **options)
+        self.assertEqual(Photo.objects.public().count(), 25)
+        self.assertEqual(Story.objects.count(), 3)
+        for entry in json.loads((content / "services.json").read_text()):
+            self.assertSetEqual(
+                set(ServicePhoto.objects.filter(service__key=entry["key"]).values_list("photo__flickr_id", flat=True)),
+                set(entry["photo_ids"]),
+            )
+        download.assert_not_called()
+
+    @patch("portfolio.management.commands.import_portfolio_photos.download_image")
+    def test_missing_bundled_source_reports_failure_and_resumes_without_network(self, download):
+        source_dir = Path(self.directory.name) / "bundled"
+        source_dir.mkdir()
+        options = {"source_dir": str(source_dir), "flickr_id": "53984262444",
+                   "stdout": io.StringIO(), "stderr": io.StringIO()}
+        with self.assertRaisesMessage(CommandError, "Incomplete imports: 53984262444"):
+            call_command("import_portfolio_photos", **options)
+        photo = Photo.objects.get(flickr_id="53984262444")
+        self.assertEqual(photo.processing_status, "failed")
+        self.assertFalse(photo.is_public)
+        (source_dir / "53984262444.jpg").write_bytes(image_upload((120, 80)).read())
+        call_command("import_portfolio_photos", **options)
+        photo.refresh_from_db()
+        self.assertTrue(photo.is_public)
+        self.assertEqual(Photo.objects.count(), 1)
+        download.assert_not_called()
+
+    @patch("portfolio.management.commands.import_portfolio_photos.download_image")
     def test_targeted_source_upgrade_preserves_other_photos_and_owner_framing(self, download):
         download.side_effect = lambda url: image_upload((120, 80))
         output = io.StringIO()

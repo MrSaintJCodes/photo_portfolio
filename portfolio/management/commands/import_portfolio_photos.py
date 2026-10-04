@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 import requests
 
 from django.conf import settings
-from django.core.files.base import ContentFile
+from django.core.files.base import ContentFile, File
 from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
@@ -43,10 +43,11 @@ def download_image(url):
 
 
 class Command(BaseCommand):
-    help = "Import the approved Flickr manifest once; preserve edits and retry incomplete imports."
+    help = "Import the approved photographs from local sources or Flickr; preserve edits and retry incomplete imports."
 
     def add_arguments(self, parser):
         parser.add_argument("--manifest", default=str(settings.BASE_DIR / "content/seed_photos.json"))
+        parser.add_argument("--source-dir", help="Import bundled <Flickr ID>.jpg originals from this directory without downloading.")
         parser.add_argument("--flickr-id", help="Import or replace only this approved Flickr photo ID.")
         parser.add_argument("--replace-files", action="store_true", help="Explicitly replace already imported source files.")
         parser.add_argument("--set-hero", action="store_true", help="Select the manifest's hero and its focal points explicitly.")
@@ -71,18 +72,25 @@ class Command(BaseCommand):
                 photo.categories.set(Category.objects.filter(slug__in=entry["categories"]))
             if options["replace_files"] or not photo.source:
                 try:
-                    candidates = list(dict.fromkeys(filter(None, (entry.get("original_url"), entry.get("larger_url"), entry["url"]))))
-                    file = None
-                    for index, url in enumerate(candidates):
-                        try:
-                            file = download_image(url)
-                            break
-                        except Exception:
-                            if index == len(candidates) - 1:
-                                raise
-                    if url != candidates[0]:
-                        self.stderr.write(f"{entry['id']}: largest source unavailable; imported a fallback. Retry --replace-files to upgrade.")
-                    photo.source.save(f"{entry['id']}.jpg", file, save=False)
+                    filename = f"{entry['id']}.jpg"
+                    if options["source_dir"]:
+                        with (Path(options["source_dir"]) / filename).open("rb") as source:
+                            file = File(source, name=filename)
+                            validate_source(file)
+                            photo.source.save(filename, file, save=False)
+                    else:
+                        candidates = list(dict.fromkeys(filter(None, (entry.get("original_url"), entry.get("larger_url"), entry["url"]))))
+                        file = None
+                        for index, url in enumerate(candidates):
+                            try:
+                                file = download_image(url)
+                                break
+                            except Exception:
+                                if index == len(candidates) - 1:
+                                    raise
+                        if url != candidates[0]:
+                            self.stderr.write(f"{entry['id']}: largest source unavailable; imported a fallback. Retry --replace-files to upgrade.")
+                        photo.source.save(filename, file, save=False)
                     photo.save()
                     process_photo(photo)
                 except Exception as exc:
@@ -110,6 +118,8 @@ class Command(BaseCommand):
             if photo.is_public and entry.get("entrance"):
                 Category.objects.filter(slug=entry["entrance"], cover_photo__isnull=True).update(cover_photo=photo, updated_at=timezone.now())
             self.stdout.write(f"Ready: {photo.title_en} ({photo.width} x {photo.height})")
+        if failures:
+            raise CommandError(f"Incomplete imports: {', '.join(failures)}. Rerun to resume.")
         for order, (slug, en, fr, intro_en, intro_fr, ids) in enumerate(COLLECTIONS):
             photos = {p.flickr_id: p for p in Photo.objects.public().filter(flickr_id__in=ids)}
             if any(photo_id not in photos for photo_id in ids):
@@ -123,6 +133,4 @@ class Command(BaseCommand):
                     if photo_id in photos:
                         StoryPhoto.objects.create(story=story, photo=photos[photo_id], order=index)
         call_command("seed_services", stdout=self.stdout)
-        if failures:
-            raise CommandError(f"Incomplete imports: {', '.join(failures)}. Rerun to resume.")
         self.stdout.write(self.style.SUCCESS("Approved photographs and thematic collections are ready."))

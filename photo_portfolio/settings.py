@@ -44,6 +44,8 @@ ALLOWED_HOSTS = env_list(
 )
 
 railway_public_domain = os.environ.get("RAILWAY_PUBLIC_DOMAIN")
+if RUNNING_ON_RAILWAY:
+    ALLOWED_HOSTS.append("healthcheck.railway.app")
 if railway_public_domain:
     ALLOWED_HOSTS.append(railway_public_domain)
 
