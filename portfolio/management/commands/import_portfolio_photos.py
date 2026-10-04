@@ -48,6 +48,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("--manifest", default=str(settings.BASE_DIR / "content/seed_photos.json"))
         parser.add_argument("--source-dir", help="Import bundled <Flickr ID>.jpg originals from this directory without downloading.")
+        parser.add_argument("--rendition-dir", help="Copy display images prepared during the build when they match the original.")
         parser.add_argument("--flickr-id", help="Import or replace only this approved Flickr photo ID.")
         parser.add_argument("--replace-files", action="store_true", help="Explicitly replace already imported source files.")
         parser.add_argument("--set-hero", action="store_true", help="Select the manifest's hero and its focal points explicitly.")
@@ -70,7 +71,8 @@ class Command(BaseCommand):
             initial_import = created or photo.width == 0
             if created:
                 photo.categories.set(Category.objects.filter(slug__in=entry["categories"]))
-            if options["replace_files"] or not photo.source:
+            source_missing = not photo.source or not photo.source.storage.exists(photo.source.name)
+            if options["replace_files"] or source_missing:
                 try:
                     filename = f"{entry['id']}.jpg"
                     if options["source_dir"]:
@@ -92,14 +94,18 @@ class Command(BaseCommand):
                             self.stderr.write(f"{entry['id']}: largest source unavailable; imported a fallback. Retry --replace-files to upgrade.")
                         photo.source.save(filename, file, save=False)
                     photo.save()
-                    process_photo(photo)
+                    process_photo(photo, rendition_dir=options["rendition_dir"])
                 except Exception as exc:
                     Photo.objects.filter(pk=photo.pk).update(processing_status="failed", processing_error=str(exc))
                     failures.append(entry["id"])
                     self.stderr.write(f"{entry['id']}: {exc}")
                     continue
-            elif photo.processing_status != "ready":
-                process_photo(photo)
+            else:
+                renditions = list(photo.renditions.all())
+                if photo.processing_status != "ready" or not renditions or any(
+                    not rendition.file.storage.exists(rendition.file.name) for rendition in renditions
+                ):
+                    process_photo(photo, rendition_dir=options["rendition_dir"])
             if photo.processing_status != "ready":
                 failures.append(entry["id"])
                 continue

@@ -143,8 +143,10 @@ STORAGES = {
     },
 }
 MEDIA_URL = "/media/"
-MEDIA_ROOT = Path(os.environ.get("MEDIA_ROOT", BASE_DIR / "media"))
-PRIVATE_MEDIA_ROOT = Path(os.environ.get("PRIVATE_MEDIA_ROOT", BASE_DIR / "private_media"))
+railway_volume_mount = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH")
+media_base = Path(railway_volume_mount) if railway_volume_mount else BASE_DIR
+MEDIA_ROOT = Path(os.environ.get("MEDIA_ROOT") or media_base / "media")
+PRIVATE_MEDIA_ROOT = Path(os.environ.get("PRIVATE_MEDIA_ROOT") or media_base / ("private" if railway_volume_mount else "private_media"))
 STORAGES["default"] = {
     "BACKEND": "django.core.files.storage.FileSystemStorage",
     "OPTIONS": {"location": MEDIA_ROOT, "base_url": MEDIA_URL},

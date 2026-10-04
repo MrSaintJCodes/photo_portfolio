@@ -7,6 +7,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 RUN python manage.py compilemessages --ignore=.venv && DEBUG=True python manage.py collectstatic --noinput
+RUN python scripts/prepare_photos.py
 RUN chmod +x scripts/start.sh
 EXPOSE 8000
 CMD ["./scripts/start.sh"]
