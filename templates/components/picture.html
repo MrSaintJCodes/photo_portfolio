@@ -1,0 +1,18 @@
+{% if image.src %}
+  <picture>
+    {% if image.webp_srcset %}
+      <source type="image/webp"
+              srcset="{{ image.webp_srcset }}"
+              sizes="{{ sizes }}">
+    {% endif %}
+    <img src="{{ image.src }}"
+         srcset="{{ image.jpeg_srcset }}"
+         sizes="{{ sizes }}"
+         width="{{ image.width }}"
+         height="{{ image.height }}"
+         alt="{{ image.alt }}"
+         style="object-position:{{ image.focal_x }}% {{ image.focal_y }}%"
+         {% if eager %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %}
+         decoding="async">
+  </picture>
+{% endif %}

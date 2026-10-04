@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n portfolio_tags %}
+{% block content %}
+<section class="services-hero">
+  {% if cover %}<div class="services-hero-photo">{% photo_picture cover sizes="(max-width: 600px) 900px, 100vw" eager=True %}</div>{% endif %}
+  <div class="section-shell services-hero-copy"><p class="eyebrow">{{ site_name }}</p><h1>{{ site.services_heading }}</h1></div>
+</section>
+<section class="section-shell services-overview">
+  <p>{{ site.services_intro }}</p>
+  <div class="services-actions"><a class="text-link" data-camera-transition href="{% url 'contact' %}">{% translate "Tell me about your shoot" %} <span aria-hidden="true">↗</span></a><a class="text-link secondary-action" data-camera-transition href="{% url 'work' %}">{% translate "Explore my sports portfolio" %} <span aria-hidden="true">↗</span></a></div>
+</section>
+<section class="section-shell offering-grid" aria-label="{% translate 'Photography services' %}">
+  {% for offering in offerings %}
+  <article class="offering-card{% if not offering.cover_photo.is_public %} offering-text-led{% endif %}" id="{{ offering.key }}">
+    {% if offering.cover_photo.is_public %}<figure class="offering-photo">{% photo_picture offering.cover_photo sizes="(min-width: 1440px) 650px, (min-width: 700px) 46vw, 100vw" %}</figure>{% endif %}
+    <div class="offering-copy"><span class="photo-number">0{{ forloop.counter }}</span><h2>{{ offering.title }}</h2><p>{{ offering.description }}</p>
+      <a class="text-link offering-inquiry" data-camera-transition href="{{ offering.inquiry_url }}">{{ offering.inquiry_label }} <span aria-hidden="true">↗</span></a>
+      {% if offering.detail_url %}<a class="offering-detail" data-camera-transition href="{{ offering.detail_url }}">{{ offering.detail_page.title }} <span aria-hidden="true">↗</span></a>{% endif %}
+    </div>
+  </article>
+  {% empty %}<p class="empty-state">{% translate "Service information will be added here soon." %}</p>{% endfor %}
+</section>
+<section class="section-shell services-audience"><h2>{% translate "Who I work with" %}</h2><p>{{ audience }}</p></section>
+<section class="section-shell services-planning"><h2>{% translate "Planning your shoot" %}</h2><ol>{% for step in planning_steps %}<li><span class="photo-number" aria-hidden="true">0{{ forloop.counter }}</span><p>{{ step }}</p></li>{% endfor %}</ol></section>
+<section class="section-shell services-booking"><div><h2>{% translate "What are you planning?" %}</h2><p>{{ booking_copy }}</p></div><a class="text-link" data-camera-transition href="{% url 'contact' %}">{% translate "Request a quote" %} <span aria-hidden="true">↗</span></a></section>
+{% endblock %}

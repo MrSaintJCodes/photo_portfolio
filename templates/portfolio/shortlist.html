@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% block content %}
+<section class="section-shell page-intro"><p class="eyebrow">{% translate "The selection" %}</p><div class="page-title-row"><h1>{% translate "Saved photographs" %}<span class="accent">.</span></h1><span data-shortlist-count>0</span></div></section>
+<section class="section-shell shortlist-section"><div class="shortlist-actions"><a class="text-link" href="{% url 'work' %}">← {% translate "Selected work" %}</a><button class="icon-button shortlist-clear" type="button" data-shortlist-clear aria-label="{% translate 'Clear saved photographs' %}" title="{% translate 'Clear saved photographs' %}"><img src="{% static 'icons/x.svg' %}" width="24" height="24" alt=""></button></div><div class="photo-grid gallery-grid" data-shortlist-root data-empty="{% translate 'No saved photographs.' %}"><p class="empty-state">{% translate "No saved photographs." %}</p></div><a class="text-link shortlist-inquiry" href="{% url 'contact' %}" data-shortlist-inquiry hidden>{% translate "Inquire with these photos" %} <span aria-hidden="true">↗</span></a></section>
+{% endblock %}

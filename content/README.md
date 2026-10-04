@@ -1,0 +1,22 @@
+# Portfolio photographs
+
+`seed_photos.json` contains all 24 publicly available photographs in the owner's approved Flickr sports album, with original-sized sources checked on October 3, 2026:
+https://www.flickr.com/photos/194206904@N02/albums/72177720309211783/
+
+The manifest records each original photo ID, photo-page attribution, descriptive English/French copy, category, and focal point. Original URLs and dimensions come from each Flickr photo page's structured photo metadata, including its size-specific original secret. The importer requests the original first, then a large preview, then the small preview; using a fallback emits a warning. Originals range from 800 to 6048 pixels on the long edge. "Keep moving" (`52989546463`) is available on Flickr only at 800 x 534; a higher-resolution owner original is needed to improve that photo. Actual decoded sizes are stored; derivatives are never enlarged.
+
+Photo files are downloaded explicitly and are not committed. Public page requests use local or object storage, never Flickr. Repeat imports preserve titles, captions, publication decisions, category membership, covers, and owner-edited settings. `--replace-files` intentionally replaces source files but still preserves copy.
+
+Run `python manage.py import_portfolio_photos` to populate Work or extend an installation that has the original seven-photo selection. The 17 additional photographs are published in Work but not featured on the homepage. Work displays 18 photographs per page, with the remaining six on the second page. This manifest is a checked snapshot, not a live Flickr sync; future album additions require updating it and rerunning the importer.
+
+The seeded stories are thematic collections, not claims of covering a particular event. Client-credit content is intentionally absent from public pages, following the owner's latest instruction. Optional admin credit records remain inactive.
+
+The homepage hero is the owner's original swimming photograph, Flickr ID `53984262444`. Run `python manage.py import_portfolio_photos --set-hero` to explicitly restore this choice and its desktop/mobile focal points on an existing installation. Normal repeat imports preserve the owner's current hero selection. The jumping-athletes photograph remains available in Work.
+
+The swimming photograph's `_o.jpg` source is Flickr's 4957 x 3098 original, upgraded from the earlier 1024px preview and 2048px rendition. To upgrade only this source on an existing installation, run `python manage.py import_portfolio_photos --flickr-id 53984262444 --replace-files`. This preserves the owner's text, publication choices, and current hero framing. The depth effect uses the photograph itself, without generative changes to the athlete or water, and now animates automatically without following the pointer.
+
+Existing starter previews are retained on repeat imports. To upgrade every source to the recorded original versions, run `python manage.py import_portfolio_photos --replace-files`, or upload higher-resolution files through Django admin. Run `python manage.py rebuild_renditions` to apply the quality-95 JPEG/WebP settings and full-native-size output to existing private sources without redownloading them. Public derivatives include the exact native size, without a 2560px cap, and use the new `-v3` cache version. All photographs in Work are from the owner's approved album. The About portrait is a separate owner-supplied attachment, bundled in `static/images/justin-st-laurent.jpg`, and is retained at its supplied 959 x 960 dimensions until a larger owner original is provided.
+
+`services.json` seeds three localized service pages, coverage topics, visible FAQs, and ordered links to existing portfolio photographs and collections. The importer seeds these after the photos are ready. Existing installations can run `python manage.py seed_services` independently. Repeat seeding does not overwrite owner edits or publication decisions. Copy uses the verified South Shore location and visible sports subjects, without named commissions, prices, or delivery promises. Review and adjust this starter copy in admin before launch.
+
+Behind-the-frame fields start empty. They are reserved for the owner's own explanation of a photograph or collection, not inferred camera settings or invented accounts of a shoot. Generated rendition filenames use the verified scene title, stable photo/Flickr identifier, source digest, and actual image width. Rebuilding is explicit and retains old files under the existing media retention policy.

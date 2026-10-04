@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n portfolio_tags %}
+{% block title %}{% translate "Selected work" %} | {{ site_name }}{% endblock %}
+{% block content %}
+  <section class="section-shell page-intro"><p class="eyebrow">{% translate "The portfolio" %}</p><div class="page-title-row"><h1>{% translate "Selected work" %}<span class="accent">.</span></h1><p>{% translate "The effort. The emotion. The moment." %}</p></div></section>
+  <section class="section-shell gallery-section"><nav class="gallery-filters"
+     aria-label="{% translate 'Photograph categories' %}"><a href="{% url 'work' %}"
+   {% if not category %}aria-current="page"{% endif %}>{% translate "All" %}</a>{% for item in categories %}<a href="{% url 'work' %}?category={{ item.slug }}"
+   {% if category.pk == item.pk %}aria-current="page"{% endif %}>{{ item.name }}</a>{% endfor %}<span class="gallery-total">{{ page.paginator.count|stringformat:'02d' }} {% translate "photographs" %}</span></nav>
+    <div class="photo-grid gallery-grid">{% for photo in page %}<figure class="photo-item{% if photo.height > photo.width %} portrait{% endif %}"><a href="{% url 'photo' photo.identifier %}"
+   data-lightbox-index="{{ forloop.counter0 }}">{% photo_picture photo eager=forloop.first %}</a><figcaption><span>{{ photo.title }}</span><span class="photo-number">{{ forloop.counter|add:page.start_index|add:'-1'|stringformat:'02d' }}</span>{% include "components/save_photo.html" %}</figcaption></figure>{% empty %}<p class="empty-state">{% translate "Photographs will be added here soon." %}</p>{% endfor %}</div>
+  {% if page.has_other_pages %}<nav class="pagination" aria-label="{% translate 'Gallery pages' %}">{% if page.has_previous %}<a href="?page={{ page.previous_page_number }}{% if category %}&amp;category={{ category.slug }}{% endif %}">← {% translate "Previous" %}</a>{% endif %}<span>{{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a href="?page={{ page.next_page_number }}{% if category %}&amp;category={{ category.slug }}{% endif %}">{% translate "Next" %} →</a>{% endif %}</nav>{% endif %}</section>
+  {% include "components/contact_invitation.html" %}
+{% endblock %}

@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: portfolio
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: development-only
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portfolio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: "True"
+      DATABASE_URL: postgres://portfolio:development-only@db:5432/portfolio
+      MEDIA_ROOT: /data/media
+      PRIVATE_MEDIA_ROOT: /data/private
+      PORT: "8000"
+    volumes:
+      - portfolio_media:/data
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  postgres_data:
+  portfolio_media:

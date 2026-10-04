@@ -1,0 +1,574 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: MrSaintJ Photography\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-02 22:43-0400\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: inquiries/forms.py:9
+msgid "Name"
+msgstr "Nom"
+
+#: inquiries/forms.py:10
+msgid "Email"
+msgstr "Courriel"
+
+#: inquiries/forms.py:11
+msgid "Organization"
+msgstr "Organisation"
+
+#: inquiries/forms.py:13
+msgid "Assignment"
+msgstr "Projet"
+
+#: inquiries/forms.py:14
+msgid "Select an option"
+msgstr "Choisir une option"
+
+#: inquiries/forms.py:14
+msgid "Race / endurance event"
+msgstr "Course / événement d'endurance"
+
+#: inquiries/forms.py:15
+msgid "Team sport"
+msgstr "Sport d'équipe"
+
+#: inquiries/forms.py:15
+msgid "Athlete story"
+msgstr "Histoire d'athlète"
+
+#: inquiries/forms.py:15
+msgid "Other event"
+msgstr "Autre événement"
+
+#: inquiries/forms.py:17
+msgid "Event date"
+msgstr "Date de l'événement"
+
+#: inquiries/forms.py:18
+msgid "Location"
+msgstr "Lieu"
+
+#: inquiries/forms.py:19
+msgid "Your project"
+msgstr "Votre projet"
+
+#: inquiries/forms.py:29 portfolio/discovery.py:125
+msgid "Please review your saved photographs."
+msgstr "Veuillez vérifier vos photos sélectionnées."
+
+#: inquiries/forms.py:34
+msgid "Enter your name on one line."
+msgstr "Inscrivez votre nom sur une seule ligne."
+
+#: inquiries/views.py:38
+msgid "This form has expired. Please submit your message again."
+msgstr "Ce formulaire a expiré. Veuillez envoyer votre message à nouveau."
+
+#: inquiries/views.py:44 inquiries/views.py:65
+msgid "Thanks for getting in touch."
+msgstr "Merci de votre message."
+
+#: inquiries/views.py:47
+msgid "Too many messages. Please try again later."
+msgstr "Trop de messages. Veuillez réessayer plus tard."
+
+#: inquiries/views.py:58
+msgid "Your message could not be saved. Please try again."
+msgstr "Votre message n'a pas pu être enregistré. Veuillez réessayer."
+
+#: portfolio/discovery.py:69 portfolio/discovery.py:111
+#: portfolio/services/seo.py:49
+msgid "About Justin St-Laurent"
+msgstr "À propos de Justin St-Laurent"
+
+#: portfolio/discovery.py:73 portfolio/discovery.py:74
+#: portfolio/discovery.py:84 portfolio/discovery.py:111
+#: portfolio/services/seo.py:50 templates/base.html:66
+#: templates/portfolio/contact.html:3 templates/portfolio/privacy.html:4
+msgid "Contact"
+msgstr "Contact"
+
+#: portfolio/discovery.py:76 portfolio/discovery.py:111
+#: portfolio/services/seo.py:50 templates/portfolio/services.html:4
+msgid "Photography services"
+msgstr "Services de photographie"
+
+#: portfolio/discovery.py:86 portfolio/discovery.py:111
+#: portfolio/services/seo.py:49
+msgid "Stories & collections"
+msgstr "Histoires et collections"
+
+#: portfolio/services/seo.py:48
+msgid "Sports & Event Photographer in Montréal"
+msgstr "Photographe de sport et d'événements à Montréal"
+
+#: portfolio/services/seo.py:48 templates/404.html:1
+#: templates/portfolio/home.html:23 templates/portfolio/photo.html:4
+#: templates/portfolio/shortlist.html:5 templates/portfolio/work.html:3
+#: templates/portfolio/work.html:5
+msgid "Selected work"
+msgstr "Sélection de photos"
+
+#: portfolio/services/seo.py:50 templates/base.html:82
+#: templates/portfolio/contact.html:4 templates/portfolio/privacy.html:3
+#: templates/portfolio/privacy.html:4
+msgid "Privacy"
+msgstr "Confidentialité"
+
+#: portfolio/services/seo.py:51 templates/base.html:71
+#: templates/portfolio/shortlist.html:4
+msgid "Saved photographs"
+msgstr "Photos sélectionnées"
+
+#: portfolio/services/seo.py:54
+msgid ""
+"Sports and event photography by Justin St-Laurent, based on Montréal's South "
+"Shore. Action, effort, and the people behind every moment."
+msgstr ""
+"Photographie de sport et d'événements par Justin St-Laurent, basé sur la "
+"Rive-Sud de Montréal. L'action, l'effort et les gens derrière chaque moment."
+
+#: portfolio/services/seo.py:55 portfolio/views.py:48
+msgid ""
+"Sport in its most decisive moments. Selected photographs by MrSaintJ "
+"Photography."
+msgstr ""
+"Le sport dans ses moments décisifs. Une sélection de photos signées MrSaintJ "
+"Photography."
+
+#: portfolio/services/seo.py:56 portfolio/views.py:62
+#: templates/portfolio/stories.html:4
+msgid "Action, atmosphere, and the people in between."
+msgstr "L'action, l'ambiance et les gens qui les font vivre."
+
+#: portfolio/services/seo.py:57
+msgid "How inquiry information is used by MrSaintJ Photography."
+msgstr "L'utilisation des renseignements de votre demande par MrSaintJ Photography."
+
+#: portfolio/services/seo.py:58
+msgid ""
+"Sports, race and endurance-event, and team-sports photography. Based on "
+"Montréal's South Shore, Québec."
+msgstr ""
+"Photographie de sport, de courses, d'événements d'endurance et de sports "
+"d'équipe. Basé sur la Rive-Sud de Montréal, au Québec."
+
+#: portfolio/services/seo.py:59
+msgid "Selected portfolio photographs for your inquiry."
+msgstr "Les photos du portfolio sélectionnées pour votre demande."
+
+#: templates/404.html:1
+msgid "Out of frame."
+msgstr "Hors cadre."
+
+#: templates/404.html:1
+msgid "This page is no longer here."
+msgstr "Cette page n'est plus disponible."
+
+#: templates/base.html:37
+msgid "You can save up to 12 photographs."
+msgstr "Vous pouvez sélectionner jusqu'à 12 photos."
+
+#: templates/base.html:37
+msgid "Saved photographs are temporarily unavailable."
+msgstr "Les photos sélectionnées sont temporairement indisponibles."
+
+#: templates/base.html:37 templates/components/lightbox.html:6
+#: templates/components/save_photo.html:2
+msgid "Save photograph"
+msgstr "Sélectionner la photo"
+
+#: templates/base.html:37
+msgid "Remove photograph"
+msgstr "Retirer la photo"
+
+#: templates/base.html:38
+msgid "Skip to content"
+msgstr "Aller au contenu"
+
+#: templates/base.html:45 templates/base.html:47 templates/base.html:48
+msgid "Open menu"
+msgstr "Ouvrir le menu"
+
+#: templates/base.html:46
+msgid "Close menu"
+msgstr "Fermer le menu"
+
+#: templates/base.html:57
+msgid "Main navigation"
+msgstr "Navigation principale"
+
+#: templates/base.html:59
+msgid "Work"
+msgstr "Photos"
+
+#: templates/base.html:61 templates/portfolio/stories.html:3
+#: templates/portfolio/stories.html:4 templates/portfolio/story.html:4
+msgid "Stories"
+msgstr "Histoires"
+
+#: templates/base.html:62 templates/portfolio/home.html:37
+#: templates/portfolio/service.html:4
+msgid "Services"
+msgstr "Services"
+
+#: templates/base.html:64 templates/portfolio/about.html:3
+msgid "About"
+msgstr "À propos"
+
+#: templates/base.html:82 templates/components/contact_invitation.html:2
+msgid "Get in touch"
+msgstr "Me contacter"
+
+#: templates/base.html:82
+msgid "Site guide"
+msgstr "Guide du site"
+
+#: templates/components/contact_invitation.html:2
+msgid "Your next story"
+msgstr "Votre prochaine histoire"
+
+#: templates/components/contact_invitation.html:2
+msgid "Let's capture"
+msgstr "Immortalisons"
+
+#: templates/components/contact_invitation.html:2
+msgid "what matters."
+msgstr "ce qui compte."
+
+#: templates/components/lightbox.html:3
+msgid "Photograph viewer"
+msgstr "Visionneuse de photos"
+
+#: templates/components/lightbox.html:9 templates/components/lightbox.html:10
+msgid "Close"
+msgstr "Fermer"
+
+#: templates/components/lightbox.html:22 templates/components/lightbox.html:23
+msgid "Previous photograph"
+msgstr "Photo précédente"
+
+#: templates/components/lightbox.html:31 templates/components/lightbox.html:32
+msgid "Next photograph"
+msgstr "Photo suivante"
+
+#: templates/components/lightbox.html:41 templates/portfolio/photo.html:7
+msgid "View on Flickr"
+msgstr "Voir sur Flickr"
+
+#: templates/portfolio/about.html:4
+msgid "Behind the camera"
+msgstr "Derrière l'objectif"
+
+#: templates/portfolio/about.html:4
+msgid "Social profiles"
+msgstr "Réseaux sociaux"
+
+#: templates/portfolio/about.html:10
+msgid "Photography CV"
+msgstr "CV photographique"
+
+#: templates/portfolio/about.html:10
+msgid ""
+"Portrait of Justin St-Laurent, the photographer behind MrSaintJ Photography."
+msgstr ""
+"Portrait de Justin St-Laurent, le photographe derrière MrSaintJ Photography."
+
+#: templates/portfolio/contact.html:4
+msgid "Let's make it happen"
+msgstr "Créons ensemble"
+
+#: templates/portfolio/contact.html:4
+msgid "Your event."
+msgstr "Votre événement."
+
+#: templates/portfolio/contact.html:4
+msgid "In focus."
+msgstr "En image."
+
+#: templates/portfolio/contact.html:4
+msgid "Based in"
+msgstr "Basé à"
+
+#: templates/portfolio/contact.html:4
+msgid "Montréal's South Shore"
+msgstr "Rive-Sud de Montréal"
+
+#: templates/portfolio/contact.html:4
+msgid "Selected photographs"
+msgstr "Photos sélectionnées"
+
+#: templates/portfolio/contact.html:4 templates/portfolio/shortlist.html:5
+msgid "No saved photographs."
+msgstr "Aucune photo sélectionnée."
+
+#: templates/portfolio/contact.html:4
+msgid "optional"
+msgstr "facultatif"
+
+#: templates/portfolio/contact.html:4
+msgid "Your information is used only to respond to your inquiry."
+msgstr "Vos renseignements servent uniquement à répondre à votre demande."
+
+#: templates/portfolio/contact.html:4
+msgid "Send inquiry"
+msgstr "Envoyer la demande"
+
+#: templates/portfolio/home.html:3 templates/portfolio/home.html:17
+msgid "Sports & event photography"
+msgstr "Photographie de sport et d'événements"
+
+#: templates/portfolio/home.html:25
+msgid "Assignment work with"
+msgstr "Mandats avec"
+
+#: templates/portfolio/home.html:27
+msgid "At the heart of the moment"
+msgstr "Au cœur du moment"
+
+#: templates/portfolio/home.html:29
+msgid "The pressure. The determination."
+msgstr "La pression. La détermination."
+
+#: templates/portfolio/home.html:31
+msgid "The emotion that stays."
+msgstr "L'émotion qui reste."
+
+#: templates/portfolio/home.html:34
+msgid "A closer look"
+msgstr "Au plus près"
+
+#: templates/portfolio/home.html:34
+msgid "All photographs"
+msgstr "Toutes les photos"
+
+#: templates/portfolio/home.html:36
+msgid "Collections"
+msgstr "Collections"
+
+#: templates/portfolio/home.html:36
+msgid "All stories"
+msgstr "Toutes les histoires"
+
+#: templates/portfolio/home.html:37 templates/portfolio/services.html:4
+msgid "The assignment"
+msgstr "Le mandat"
+
+#: templates/portfolio/photo.html:7 templates/portfolio/story.html:5
+msgid "Behind the frame"
+msgstr "Derrière l'image"
+
+#: templates/portfolio/photo.html:7
+msgid "Related work"
+msgstr "Photos associées"
+
+#: templates/portfolio/photo.html:7 templates/portfolio/service.html:6
+msgid "Discuss your assignment"
+msgstr "Discutons de votre mandat"
+
+#: templates/portfolio/privacy.html:4
+msgid ""
+"When you send an inquiry, your name, email address, message, and any event "
+"details you include are saved so I can respond and follow up on your project."
+msgstr ""
+"Lorsque vous envoyez une demande, votre nom, votre adresse courriel, votre "
+"message et les détails de votre événement sont enregistrés pour que je "
+"puisse vous répondre et assurer le suivi de votre projet."
+
+#: templates/portfolio/privacy.html:4
+msgid ""
+"Inquiry information is available to the site owner through protected "
+"administration. Email notifications may be sent through Resend or the "
+"configured email provider. Your information is not used for marketing "
+"enrollment."
+msgstr ""
+"Les demandes sont accessibles au propriétaire du site dans une "
+"administration protégée. Des notifications peuvent être envoyées par Resend "
+"ou le fournisseur de courriel configuré. Vos renseignements ne servent pas à "
+"vous inscrire à des communications promotionnelles."
+
+#: templates/portfolio/privacy.html:4
+msgid ""
+"This site uses essential session and security cookies for the contact form "
+"and language preference. Links to social platforms take you to their own "
+"websites and privacy policies."
+msgstr ""
+"Ce site utilise des témoins essentiels de session et de sécurité pour le "
+"formulaire de contact et la préférence de langue. Les liens vers les réseaux "
+"sociaux mènent à leurs sites et à leurs politiques de confidentialité."
+
+#: templates/portfolio/privacy.html:4
+msgid ""
+"To ask about your inquiry information or request its removal, get in touch "
+"through the contact page."
+msgstr ""
+"Pour poser une question sur les renseignements de votre demande ou en "
+"demander la suppression, utilisez la page de contact."
+
+#: templates/portfolio/service.html:6
+msgid "The coverage"
+msgstr "Le reportage"
+
+#: templates/portfolio/service.html:7
+msgid "Before the assignment"
+msgstr "Avant le mandat"
+
+#: templates/portfolio/service.html:8
+msgid "Related collections"
+msgstr "Collections associées"
+
+#: templates/portfolio/services.html:4
+msgid "Montréal. The South Shore. The moments that matter."
+msgstr "Montréal. La Rive-Sud. Les moments qui comptent."
+
+#: templates/portfolio/services.html:5
+msgid "Explore the coverage"
+msgstr "Découvrir le reportage"
+
+#: templates/portfolio/services.html:5
+msgid "Service information will be added here soon."
+msgstr "Les informations sur les services seront ajoutées ici bientôt."
+
+#: templates/portfolio/shortlist.html:4
+msgid "The selection"
+msgstr "La sélection"
+
+#: templates/portfolio/shortlist.html:5
+msgid "Clear saved photographs"
+msgstr "Effacer les photos sélectionnées"
+
+#: templates/portfolio/shortlist.html:5
+msgid "Inquire with these photos"
+msgstr "Joindre ces photos à une demande"
+
+#: templates/portfolio/stories.html:4
+msgid "Beyond a single frame"
+msgstr "Au-delà d'une seule image"
+
+#: templates/portfolio/stories.html:5
+msgid "Collection"
+msgstr "Collection"
+
+#: templates/portfolio/stories.html:5 templates/portfolio/story.html:4
+msgid "Event story"
+msgstr "Histoire d'événement"
+
+#: templates/portfolio/stories.html:5
+msgid "View collection"
+msgstr "Voir la collection"
+
+#: templates/portfolio/stories.html:5
+msgid "New stories are on their way."
+msgstr "De nouvelles histoires arrivent bientôt."
+
+#: templates/portfolio/story.html:4
+msgid "A photographic collection"
+msgstr "Une collection photographique"
+
+#: templates/portfolio/work.html:5
+msgid "The portfolio"
+msgstr "Le portfolio"
+
+#: templates/portfolio/work.html:5
+msgid "The effort. The emotion. The moment."
+msgstr "L'effort. L'émotion. Le moment."
+
+#: templates/portfolio/work.html:7
+msgid "Photograph categories"
+msgstr "Catégories de photos"
+
+#: templates/portfolio/work.html:8
+msgid "All"
+msgstr "Toutes"
+
+#: templates/portfolio/work.html:9
+msgid "photographs"
+msgstr "photos"
+
+#: templates/portfolio/work.html:11
+msgid "Photographs will be added here soon."
+msgstr "Des photos seront ajoutées ici bientôt."
+
+#: templates/portfolio/work.html:12
+msgid "Gallery pages"
+msgstr "Pages de la galerie"
+
+#: templates/portfolio/work.html:12
+msgid "Previous"
+msgstr "Précédente"
+
+#: templates/portfolio/work.html:12
+msgid "Next"
+msgstr "Suivante"
+
+#: templates/portfolio/privacy.html
+msgid "Saved photo selections are kept in your browser. The photographs you include when submitting an inquiry are saved with that inquiry."
+msgstr "Les sélections de photos sont conservées dans votre navigateur. Les photos que vous joignez à une demande sont enregistrées avec celle-ci."
+
+#~ msgid "It's always about the people."
+#~ msgstr "Les gens sont toujours au cœur de l'histoire."
+
+msgid "Sports photography services"
+msgstr "Services de photographie sportive"
+
+msgid "Photography service"
+msgstr "Service de photographie"
+
+msgid "Individual athlete portraits"
+msgstr "Portraits individuels d'athlètes"
+
+msgid "Team and group photos"
+msgstr "Photos d'équipe et de groupe"
+
+msgid "Game-day action and training"
+msgstr "Action en match et à l'entraînement"
+
+msgid "Races and endurance events"
+msgstr "Courses et événements d'endurance"
+
+msgid "Tournaments and sporting events"
+msgstr "Tournois et événements sportifs"
+
+msgid "Fitness and sports promotion"
+msgstr "Fitness et promotion sportive"
+
+msgid "Tell me about your shoot"
+msgstr "Parlez-moi de votre projet photo"
+
+msgid "Explore my sports portfolio"
+msgstr "Voir mon portfolio sportif"
+
+msgid "Who I work with"
+msgstr "Avec qui je travaille"
+
+msgid "Individual athletes, teams and clubs, coaches, schools, fitness professionals, and event organizers."
+msgstr "Athlètes individuels, équipes et clubs, entraîneurs, écoles, professionnels du fitness et organisateurs d'événements."
+
+msgid "Planning your shoot"
+msgstr "Planifier votre séance"
+
+msgid "Tell me about the sport, people, location, and date."
+msgstr "Parlez-moi du sport, des participants, du lieu et de la date."
+
+msgid "We agree on the coverage, priorities, intended use, and delivery."
+msgstr "Nous définissons la couverture, les priorités, l'utilisation prévue et la livraison."
+
+msgid "I photograph the planned portraits, action, or event."
+msgstr "Je photographie les portraits, l'action ou l'événement selon le mandat convenu."
+
+msgid "You receive the image selection and format agreed for your project."
+msgstr "Vous recevez la sélection d'images et le format convenus pour votre projet."
+
+msgid "What are you planning?"
+msgstr "Quel est votre projet?"
+
+msgid "Whether you need portraits for one athlete, photos for an entire team, or coverage of a sporting event, tell me what you have in mind. Share the sport, date, location, and the moments or people you want photographed so we can discuss the right coverage."
+msgstr "Que vous souhaitiez des portraits pour un athlète, des photos pour toute une équipe ou la couverture d'un événement sportif, parlez-moi de votre projet. Précisez le sport, la date, le lieu et les moments ou les personnes à photographier afin que nous puissions discuter de la couverture qui vous convient."
+
+msgid "Request a quote"
+msgstr "Demander une soumission"

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n portfolio_tags static %}
+{% block title %}{{ site_name }} | {% translate "Sports & event photography" %}{% endblock %}
+{% block extra_scripts %}{% if hero %}<script type="module" src="{% static 'js/hero-depth.js' %}"></script>{% endif %}{% endblock %}
+{% block content %}
+  <section class="hero"
+           data-hero-depth
+           aria-labelledby="hero-heading"
+           style="--hero-x:{{ site.hero_focal_x }}%;
+                  --hero-y:{{ site.hero_focal_y }}%;
+                  --mobile-x:{{ site.mobile_focal_x }}%;
+                  --mobile-y:{{ site.mobile_focal_y }}%">
+    {% if hero %}
+      <div class="hero-photo{% if site.mobile_hero_photo.is_public %} has-mobile-hero{% endif %}">{% hero_picture hero %}</div>
+    {% endif %}
+    {% if site.mobile_hero_photo.is_public %}
+      <div class="mobile-hero-photo">{% hero_picture site.mobile_hero_photo %}</div>
+    {% endif %}
+    <div class="hero-scrim"></div><div class="hero-copy"><p class="eyebrow">{% translate "Sports & event photography" %}</p><h1 id="hero-heading">{{ site.hero_heading|linebreaksbr }}</h1></div><div class="hero-location"><p>{{ site.location }}</p><p>{{ site.tagline }}</p></div>
+  </section>
+  <div class="mobile-location">
+    <span>{{ site.location }}</span>
+    <p>{{ site.tagline }}</p>
+  </div>
+  {% if entrances %}<section class="section-shell entrances-section"><div class="section-label"><h2>{% translate "Selected work" %}</h2><span>{{ site_name }}</span></div><div class="entrance-grid">{% for item in entrances %}<a class="collection-link"
+   href="{% url 'work' %}?category={{ item.category.slug }}"><div class="entrance-image">{% photo_picture item.photo %}</div><div class="image-label"><h3>{{ item.category.name }}</h3><span>0{{ forloop.counter }}</span></div></a>{% endfor %}</div></section>{% endif %}
+  {% if partner_credits %}<section class="section-shell partner-strip"><p>{% translate "Assignment work with" %}</p>{% for partner in partner_credits %}{% if partner.url %}<a href="{{ partner.url }}" rel="noopener noreferrer">{{ partner.display_name }}</a>{% else %}<span>{{ partner.display_name }}</span>{% endif %}{% endfor %}</section>{% endif %}
+  <section class="focus-band section-shell">
+    <p>{% translate "At the heart of the moment" %}</p>
+    <h2>
+      {% translate "The pressure. The determination." %}
+      <br>
+      {% translate "The emotion that stays." %}
+    </h2>
+  </section>
+  {% if selected_photos %}<section class="section-shell selected-section"><div class="section-label"><h2>{% translate "A closer look" %}</h2><a href="{% url 'work' %}">{% translate "All photographs" %} ↗</a></div><div class="photo-grid">{% for photo in selected_photos %}<figure class="photo-item"><a href="{% url 'photo' photo.identifier %}"
+   data-lightbox-index="{{ forloop.counter0 }}">{% photo_picture photo %}</a><figcaption><span>{{ photo.title }}</span><span class="photo-number">0{{ forloop.counter }}</span></figcaption></figure>{% endfor %}</div></section>{% endif %}
+  {% if services %}<section class="section-shell services-band"><div class="section-label"><h2>{% translate "The assignment" %}</h2><a href="{% url 'services' %}">{% translate "Services" %} ↗</a></div><div class="services-band-list">{% for service in services %}<a data-camera-transition href="{{ service.url }}"><h3>{{ service.title }}</h3><span aria-hidden="true">↗</span></a>{% endfor %}</div></section>{% endif %}
+  {% include "components/contact_invitation.html" %}
+{% endblock %}

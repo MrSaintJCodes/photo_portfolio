@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load i18n portfolio_tags %}
+{% block title %}{{ photo.title }} | {{ site_name }}{% endblock %}
+{% block content %}<section class="section-shell photo-detail"><a class="back-link" href="{% url 'work' %}">← {% translate "Selected work" %}</a><figure>{% photo_picture photo sizes="100vw" eager=True %}<figcaption><h1>{{ photo.title }}</h1>{% if photo.caption %}<p>{{ photo.caption }}</p>{% endif %}<span>{{ photo.credit }}</span>{% if photo.source_url %}<a class="text-link"
+   href="{{ photo.source_url }}"
+   target="_blank"
+   rel="noopener noreferrer">{% translate "View on Flickr" %} ↗</a>{% endif %}{% include "components/save_photo.html" %}</figcaption></figure>{% if not photo.caption %}<p class="photo-context">{{ photo.alt }}</p>{% endif %}{% if photo.behind_frame %}<details class="behind-frame"><summary>{% translate "Behind the frame" %}</summary>{{ photo.behind_frame|linebreaks }}</details>{% endif %}<nav class="related-links" aria-label="{% translate 'Related work' %}">{% for story in related_stories %}<a class="text-link" href="{% url 'story' story.slug %}">{{ story.title }}</a>{% endfor %}{% for service in related_services %}<a class="text-link" href="{{ service.url }}">{{ service.title }}</a>{% endfor %}<a class="text-link" href="{% url 'contact' %}">{% translate "Discuss your assignment" %} ↗</a></nav></section>{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n portfolio_tags %}
+{% block content %}
+<article class="service-detail"><header class="section-shell service-intro"><a class="back-link" href="{% url 'services' %}">← {% translate "Services" %}</a><h1>{{ service.title }}<span class="accent">.</span></h1><p class="service-lead">{{ service.introduction }}</p></header>
+{% if photos %}<section class="section-shell"><div class="photo-grid gallery-grid">{% for photo in photos %}<figure class="photo-item"><a href="{% url 'photo' photo.identifier %}" data-lightbox-index="{{ forloop.counter0 }}">{% photo_picture photo eager=forloop.first %}</a><figcaption><span>{{ photo.title }}</span>{% include "components/save_photo.html" %}</figcaption></figure>{% endfor %}</div></section>{% endif %}
+<section class="section-shell service-information"><div class="service-prose">{{ service.body|linebreaks }}<a class="text-link" href="{% url 'contact' %}">{% translate "Discuss your assignment" %} <span aria-hidden="true">↗</span></a></div>{% if service.coverage %}<div class="coverage"><h2>{% translate "The coverage" %}</h2><ul>{% for topic in service.coverage %}<li>{{ topic }}</li>{% endfor %}</ul></div>{% endif %}</section>
+{% if questions %}<section class="section-shell service-faq"><h2>{% translate "Before the assignment" %}</h2>{% for question in questions %}<details><summary>{{ question.question }}</summary>{{ question.answer|linebreaks }}</details>{% endfor %}</section>{% endif %}
+{% if related_stories %}<section class="section-shell stories-section"><div class="section-label"><h2>{% translate "Related collections" %}</h2></div><div class="story-grid">{% for story in related_stories %}<a class="collection-link" data-camera-transition href="{% url 'story' story.slug %}"><div class="story-cover">{% photo_picture story.cover_photo %}</div><div class="image-label"><h3>{{ story.title }}</h3><span aria-hidden="true">↗</span></div></a>{% endfor %}</div></section>{% endif %}</article>
+{% include "components/contact_invitation.html" %}
+{% endblock %}

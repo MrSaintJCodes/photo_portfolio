@@ -1,0 +1,68 @@
+[
+  {
+    "key": "sports-montreal",
+    "slug_en": "sports-photography-montreal",
+    "slug_fr": "photographie-sportive-montreal",
+    "title_en": "Sports photography in Montr\u00e9al",
+    "title_fr": "Photographie sportive \u00e0 Montr\u00e9al",
+    "introduction_en": "The action matters. So do the people around it. Based on Montr\u00e9al's South Shore, I photograph sport with attention to effort, expression, and the moments that bring an event together.",
+    "introduction_fr": "L'action compte. Les gens qui l'entourent aussi. Bas\u00e9 sur la Rive-Sud de Montr\u00e9al, je photographie le sport en portant attention \u00e0 l'effort, aux expressions et aux moments qui rassemblent.",
+    "body_en": "From a swimmer entering the water to a play at the net, my portfolio follows sport at its most expressive. Coverage can bring together the decisive action, the surrounding atmosphere, and the shared reactions.\n\nI'm based on Montr\u00e9al's South Shore in Qu\u00e9bec. Tell me about your event, its location, and the photographs that matter to you so we can discuss the assignment.",
+    "body_fr": "Du nageur qui entre dans l'eau au jeu au filet, mes photos suivent le sport dans ses moments les plus expressifs. Un reportage peut r\u00e9unir l'action d\u00e9cisive, l'ambiance et les r\u00e9actions partag\u00e9es.\n\nJe suis bas\u00e9 sur la Rive-Sud de Montr\u00e9al, au Qu\u00e9bec. Parlez-moi de votre \u00e9v\u00e9nement, de son lieu et des images qui comptent pour vous afin de discuter du mandat.",
+    "coverage_en": "Decisive sports action\nAthlete expressions and shared effort\nEvent atmosphere and the people around it",
+    "coverage_fr": "L'action sportive d\u00e9cisive\nLes expressions des athl\u00e8tes et l'effort partag\u00e9\nL'ambiance et les gens qui entourent l'\u00e9v\u00e9nement",
+    "seo_title_en": "Sports Photographer in Montr\u00e9al & South Shore | MrSaintJ Photography",
+    "seo_title_fr": "Photographe sportif \u00e0 Montr\u00e9al et sur la Rive-Sud | MrSaintJ Photography",
+    "seo_description_en": "Sports and event photography by Justin St-Laurent, based on Montr\u00e9al's South Shore. Explore action, athlete moments, and event coverage.",
+    "seo_description_fr": "Photographie de sport et d'\u00e9v\u00e9nements par Justin St-Laurent, bas\u00e9 sur la Rive-Sud de Montr\u00e9al. Action, moments humains et reportages.",
+    "photo_ids": ["53984262444", "54594388608", "54083865091", "55379555324"],
+    "story_slugs": ["race-day", "in-the-game", "the-people"],
+    "questions": [
+      {"question_en": "Where are you based?", "question_fr": "O\u00f9 \u00eates-vous bas\u00e9?", "answer_en": "I'm based on Montr\u00e9al's South Shore, Qu\u00e9bec. Include your event location in your inquiry so we can discuss the assignment.", "answer_fr": "Je suis bas\u00e9 sur la Rive-Sud de Montr\u00e9al, au Qu\u00e9bec. Indiquez le lieu de votre \u00e9v\u00e9nement dans votre demande pour discuter du mandat."}
+    ]
+  },
+  {
+    "key": "race-endurance",
+    "slug_en": "race-event-photography",
+    "slug_fr": "photographie-courses-evenements",
+    "title_en": "Race & endurance photography",
+    "title_fr": "Photographie de courses et d'endurance",
+    "introduction_en": "The commitment before an obstacle. The first splash. The expression when the effort is over. I photograph racing and endurance through both its action and its human moments.",
+    "introduction_fr": "L'engagement devant un obstacle. La premi\u00e8re \u00e9claboussure. L'expression apr\u00e8s l'effort. Je photographie les courses et l'endurance \u00e0 travers l'action et les moments humains.",
+    "body_en": "My portfolio includes obstacle racing, swimming, and cycling. These photographs focus on the effort on the course as well as connection, determination, and celebration.\n\nBased on Montr\u00e9al's South Shore, I welcome inquiries about race and endurance-event assignments. Share the course, date, location, and key moments you would like covered.",
+    "body_fr": "Mon portfolio comprend la course \u00e0 obstacles, la natation et le cyclisme. Ces photos mettent en lumi\u00e8re l'effort sur le parcours, mais aussi la complicit\u00e9, la d\u00e9termination et la c\u00e9l\u00e9bration.\n\nBas\u00e9 sur la Rive-Sud de Montr\u00e9al, je re\u00e7ois les demandes de mandats pour les courses et les \u00e9v\u00e9nements d'endurance. Pr\u00e9cisez le parcours, la date, le lieu et les moments \u00e0 photographier.",
+    "coverage_en": "Obstacle-course action and effort\nSwimming and cycling\nAthlete reactions and event atmosphere",
+    "coverage_fr": "L'action et l'effort en course \u00e0 obstacles\nLa natation et le cyclisme\nLes r\u00e9actions des athl\u00e8tes et l'ambiance",
+    "seo_title_en": "Race & Endurance Event Photography | MrSaintJ Photography",
+    "seo_title_fr": "Photographie de courses et d'endurance | MrSaintJ Photography",
+    "seo_description_en": "Obstacle racing, swimming, and cycling photography focused on effort and athlete emotion. Based on Montr\u00e9al's South Shore.",
+    "seo_description_fr": "Photos de courses \u00e0 obstacles, de natation et de cyclisme centr\u00e9es sur l'effort et l'\u00e9motion. Photographe bas\u00e9 sur la Rive-Sud de Montr\u00e9al.",
+    "photo_ids": ["54594388608", "53984262444", "53983057187", "54689711439"],
+    "story_slugs": ["race-day", "the-people"],
+    "questions": [
+      {"question_en": "What should I include in a race inquiry?", "question_fr": "Que faut-il inclure dans une demande pour une course?", "answer_en": "Include the event date and location, the type of race, and the moments or people that matter most. You can attach a selection of published portfolio photographs to your inquiry.", "answer_fr": "Indiquez la date et le lieu, le type de course et les moments ou les gens qui comptent le plus. Vous pouvez joindre une s\u00e9lection de photos publi\u00e9es du portfolio \u00e0 votre demande."}
+    ]
+  },
+  {
+    "key": "team-sports",
+    "slug_en": "team-sports-photography",
+    "slug_fr": "photographie-sports-equipe",
+    "title_en": "Team-sports photography",
+    "title_fr": "Photographie de sports d'\u00e9quipe",
+    "introduction_en": "A fraction of a second changes the play. I photograph team sports with attention to anticipation, the action itself, and the reactions that follow.",
+    "introduction_fr": "Une fraction de seconde change le jeu. Je photographie les sports d'\u00e9quipe en portant attention \u00e0 l'anticipation, \u00e0 l'action et aux r\u00e9actions qui suivent.",
+    "body_en": "Volleyball and soccer photographs in the portfolio explore timing, competition, and teamwork. A sequence can connect the decisive play with the expressions and atmosphere around the game.\n\nI'm based on Montr\u00e9al's South Shore. Tell me about your team or event, the venue, and the kind of coverage you have in mind.",
+    "body_fr": "Les photos de volleyball et de soccer du portfolio explorent le timing, la comp\u00e9tition et le travail d'\u00e9quipe. Une s\u00e9quence peut relier le jeu d\u00e9cisif aux expressions et \u00e0 l'ambiance du match.\n\nJe suis bas\u00e9 sur la Rive-Sud de Montr\u00e9al. Parlez-moi de votre \u00e9quipe ou de votre \u00e9v\u00e9nement, du lieu et du reportage envisag\u00e9.",
+    "coverage_en": "The decisive play\nTeamwork and competition\nExpressions on and around the court or field",
+    "coverage_fr": "Le jeu d\u00e9cisif\nLe travail d'\u00e9quipe et la comp\u00e9tition\nLes expressions sur le terrain et autour",
+    "seo_title_en": "Team-Sports Photographer | MrSaintJ Photography",
+    "seo_title_fr": "Photographe de sports d'\u00e9quipe | MrSaintJ Photography",
+    "seo_description_en": "Volleyball and soccer photography focused on action, teamwork, and athlete expressions. Discuss team-sports coverage with MrSaintJ Photography.",
+    "seo_description_fr": "Photographie de volleyball et de soccer centr\u00e9e sur l'action, le travail d'\u00e9quipe et les expressions. Discutez de votre reportage avec MrSaintJ Photography.",
+    "photo_ids": ["54083865091", "52989459765"],
+    "story_slugs": ["in-the-game"],
+    "questions": [
+      {"question_en": "Which team sports appear in the portfolio?", "question_fr": "Quels sports d'\u00e9quipe figurent dans le portfolio?", "answer_en": "The published Team sports collection includes volleyball and soccer. Use the gallery to explore the photographs, then tell me about your own event.", "answer_fr": "La s\u00e9lection publi\u00e9e de sports d'\u00e9quipe comprend le volleyball et le soccer. D\u00e9couvrez les photos dans la galerie, puis parlez-moi de votre \u00e9v\u00e9nement."}
+    ]
+  }
+]

@@ -1,0 +1,91 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{{ language }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ seo.title }}</title>
+    <meta name="description"
+          content="{{ seo.description }}">
+    <meta name="theme-color" content="#141310">
+    <link rel="canonical" href="{{ seo.canonical }}">
+    {% for alternate in seo.alternates %}<link rel="alternate" hreflang="{{ alternate.language }}" href="{{ alternate.url }}">{% endfor %}
+    <meta name="robots" content="{% if seo.noindex %}noindex, follow{% else %}index, follow, max-image-preview:large{% endif %}">
+    {% if google_verification %}<meta name="google-site-verification" content="{{ google_verification }}">{% endif %}
+    {% if bing_verification %}<meta name="msvalidate.01" content="{{ bing_verification }}">{% endif %}
+    {% if seo.markdown_url %}<link rel="alternate" type="text/markdown" href="{{ seo.markdown_url }}">{% endif %}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:title"
+          content="{{ seo.title }}">
+    <meta property="og:description"
+          content="{{ seo.description }}">
+    <meta property="og:url" content="{{ seo.canonical }}">
+    {% if seo.image %}<meta property="og:image" content="{{ seo.image }}">{% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ seo.title }}">
+    <meta name="twitter:description" content="{{ seo.description }}">
+    {% if seo.image %}<meta name="twitter:image" content="{{ seo.image }}">{% endif %}
+    <script type="application/ld+json">{{ seo.structured_data|safe }}</script>
+    <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+    <link rel="preload"
+          href="{% static 'fonts/BarlowCondensed-Bold.ttf' %}"
+          as="font"
+          type="font/ttf"
+          crossorigin>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <script src="{% static 'js/site.js' %}" defer></script>
+    <script src="{% static 'js/shortlist.js' %}" defer></script>
+    {% if pixel_camera_enabled %}<link rel="stylesheet" href="{% static 'css/pixel-camera.css' %}"><script src="{% static 'js/pixel-camera.js' %}" defer></script>{% endif %}
+    {% block extra_scripts %}{% endblock %}
+  </head>
+  <body data-shortlist-endpoint="{% url 'shortlist-photos' %}" data-shortlist-limit="{% translate 'You can save up to 12 photographs.' %}" data-shortlist-error="{% translate 'Saved photographs are temporarily unavailable.' %}" data-save-label="{% translate 'Save photograph' %}" data-remove-label="{% translate 'Remove photograph' %}" data-bookmark-icon="{% static 'icons/bookmark.svg' %}" data-remove-icon="{% static 'icons/x.svg' %}">
+    <a class="skip-link" href="#main">{% translate "Skip to content" %}</a>
+    <header class="site-header">
+      <a class="wordmark" data-camera-transition href="{% url 'home' %}" aria-label="{{ site_name }}"><span>MRSAINTJ</span><span class="wordmark-sub">PHOTOGRAPHY<span class="brand-dot" aria-hidden="true">.</span></span></a>
+      <button class="menu-toggle icon-button"
+              type="button"
+              aria-expanded="false"
+              aria-controls="main-nav"
+              data-open-label="{% translate 'Open menu' %}"
+              data-close-label="{% translate 'Close menu' %}"
+              aria-label="{% translate 'Open menu' %}"
+              title="{% translate 'Open menu' %}">
+        <img src="{% static 'icons/menu.svg' %}"
+             width="24"
+             height="24"
+             alt=""
+             aria-hidden="true">
+      </button>
+      <nav class="site-nav"
+           id="main-nav"
+           aria-label="{% translate 'Main navigation' %}">
+        <a data-camera-transition href="{% url 'work' %}"
+           {% if active_page == 'home' or active_page == 'work' or active_page == 'photo' %}aria-current="page"{% endif %}>{% translate "Work" %}</a>
+        <a data-camera-transition href="{% url 'services' %}" {% if active_page == 'services' or active_page == 'service' %}aria-current="page"{% endif %}>{% translate "Services" %}</a>
+        <a data-camera-transition href="{% url 'about' %}"
+           {% if active_page == 'about' %}aria-current="page"{% endif %}>{% translate "About" %}</a>
+        <a data-camera-transition href="{% url 'contact' %}"
+           {% if active_page == 'contact' %}aria-current="page"{% endif %}>{% translate "Contact" %}</a>
+        <a class="language-link" data-camera-transition
+           href="{{ language_switch_url }}"
+           lang="{{ other_language }}"
+           aria-label="{% if other_language == 'fr' %}Français{% else %}English{% endif %}">{{ other_language|upper }}<span aria-hidden="true"> ↗</span></a>
+        <a class="shortlist-link" data-camera-transition href="{% url 'shortlist' %}" data-shortlist-link aria-label="{% translate 'Saved photographs' %}" title="{% translate 'Saved photographs' %}"><img src="{% static 'icons/bookmark.svg' %}" width="20" height="20" alt=""><span data-shortlist-count>0</span></a>
+      </nav>
+    </header>
+    {% if messages %}<div class="messages"
+     role="status">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>{% endif %}
+    <main id="main" tabindex="-1">
+      {% block content %}{% endblock %}
+    </main>
+    <p class="shortlist-status" data-shortlist-status role="status" hidden></p>
+    <footer class="site-footer"><a class="footer-brand" data-camera-transition href="{% url 'home' %}">{{ site_name }}</a><p>{{ site.location }}<br><span>© {% now "Y" %} {{ site_name }}</span></p><div class="footer-links"><a href="{{ site.flickr_url }}"
+   target="_blank"
+   rel="noopener noreferrer">Flickr ↗</a><a data-camera-transition href="{% url 'contact' %}">{% translate "Get in touch" %} ↗</a><a data-camera-transition href="{% url 'privacy' %}">{% translate "Privacy" %}</a>{% if llms_enabled %}<a href="{% url 'llms' %}">{% translate "Site guide" %}</a>{% endif %}</div></footer>
+    {% if lightbox_photos %}
+      {% include "components/lightbox.html" %}
+    {% endif %}
+    {% if pixel_camera_enabled %}{% include "components/pixel_camera.html" %}{% endif %}
+  </body>
+</html>

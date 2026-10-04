@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "Privacy" %} | {{ site_name }}{% endblock %}
+{% block content %}
+<section class="section-shell privacy-section">
+  <p class="eyebrow">{{ site_name }}</p>
+  <h1>{% translate "Privacy" %}<span class="accent">.</span></h1>
+  <p>{% translate "When you send an inquiry, your name, email address, message, and any event details you include are saved so I can respond and follow up on your project." %}</p>
+  <p>{% translate "Inquiry information is available to the site owner through protected administration. Email notifications may be sent through Resend or the configured email provider. Your information is not used for marketing enrollment." %}</p>
+  <p>{% translate "Saved photo selections are kept in your browser. The photographs you include when submitting an inquiry are saved with that inquiry." %}</p>
+  <p>{% translate "This site uses essential session and security cookies for the contact form and language preference. Links to social platforms take you to their own websites and privacy policies." %}</p>
+  <p>{% translate "To ask about your inquiry information or request its removal, get in touch through the contact page." %}</p>
+  <a class="text-link" href="{% url 'contact' %}">{% translate "Contact" %} ↗</a>
+</section>
+{% endblock %}

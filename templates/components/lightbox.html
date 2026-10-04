@@ -1,0 +1,42 @@
+{% load i18n static %}
+{{ lightbox_photos|json_script:"lightbox-data" }}
+<dialog class="lightbox" aria-label="{% translate 'Photograph viewer' %}">
+  <div class="lightbox-toolbar">
+    <span class="lightbox-count" aria-live="polite"></span>
+    <div class="lightbox-tools"><button class="icon-button save-photo" data-save-photo="" type="button" aria-pressed="false" aria-label="{% translate 'Save photograph' %}" title="{% translate 'Save photograph' %}"><img src="{% static 'icons/bookmark.svg' %}" width="20" height="20" alt=""></button>
+    <button class="icon-button lightbox-close"
+            type="button"
+            title="{% translate 'Close' %}"
+            aria-label="{% translate 'Close' %}">
+      <img src="{% static 'icons/x.svg' %}"
+           width="24"
+           height="24"
+           alt=""
+           aria-hidden="true">
+    </button>
+    </div>
+  </div>
+  <div class="lightbox-stage">
+    <button class="icon-button lightbox-prev"
+            type="button"
+            aria-label="{% translate 'Previous photograph' %}"
+            title="{% translate 'Previous photograph' %}">
+      <img src="{% static 'icons/chevron-left.svg' %}"
+           width="24"
+           height="24"
+           alt=""
+           aria-hidden="true">
+    </button><img class="lightbox-image" alt=""><button class="icon-button lightbox-next"
+        type="button"
+        aria-label="{% translate 'Next photograph' %}"
+        title="{% translate 'Next photograph' %}">
+      <img src="{% static 'icons/chevron-right.svg' %}"
+           width="24"
+           height="24"
+           alt=""
+           aria-hidden="true">
+    </button>
+  </div>
+  <div class="lightbox-caption"><p></p><a target="_blank"
+   rel="noopener noreferrer">{% translate "View on Flickr" %} ↗</a></div>
+</dialog>
