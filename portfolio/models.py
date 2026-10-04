@@ -52,7 +52,7 @@ class PhotoQuerySet(models.QuerySet):
 
 class Photo(models.Model):
     identifier = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
-    source = models.FileField(upload_to=source_path, storage=original_storage)
+    source = models.FileField(upload_to=source_path, storage=original_storage, max_length=512)
     source_url = models.URLField(blank=True)
     flickr_id = models.CharField(max_length=30, unique=True, null=True, blank=True)
     title_en = models.CharField(max_length=160)
@@ -136,7 +136,7 @@ class Photo(models.Model):
 
 class PhotoRendition(models.Model):
     photo = models.ForeignKey(Photo, on_delete=models.CASCADE, related_name="renditions")
-    file = models.FileField(upload_to="photos/")
+    file = models.FileField(upload_to="photos/", max_length=512)
     width = models.PositiveIntegerField()
     height = models.PositiveIntegerField()
     format = models.CharField(max_length=8, choices=[("webp", "WebP"), ("jpeg", "JPEG")])

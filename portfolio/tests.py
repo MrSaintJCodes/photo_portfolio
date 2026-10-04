@@ -190,7 +190,10 @@ class PublicationTests(MediaTestCase):
         preview_response = self.client.get(preview)
         self.assertEqual(preview_response.status_code, 200)
         self.assertEqual(preview_response["Cache-Control"], "private, no-store")
-        preview_response.close()
+        # Consume Django's test-client stream so it closes without ending the
+        # PostgreSQL transaction that wraps this TestCase.
+        with Image.open(io.BytesIO(b"".join(preview_response.streaming_content))) as image:
+            self.assertEqual(image.size, (120, 80))
         self.assertEqual(self.client.get(reverse("admin:portfolio_photo_change", args=[actual.pk])).status_code, 200)
         with self.assertRaises(ValueError):
             _ = actual.source.url
@@ -203,7 +206,8 @@ class PublicationTests(MediaTestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "image/jpeg")
-        response.close()
+        with Image.open(io.BytesIO(b"".join(response.streaming_content))) as image:
+            self.assertEqual(image.format, "JPEG")
         self.assertEqual(self.client.get(f"/media/{photo.source.name}").status_code, 404)
         photo.status = "draft"
         photo.save()
@@ -211,6 +215,34 @@ class PublicationTests(MediaTestCase):
 
 
 class ImageProcessingTests(MediaTestCase):
+    def test_long_photo_paths_fit_the_database_fields(self):
+        for flickr_id in (None, "123456789012345678901234567890"):
+            with self.subTest(flickr_id=flickr_id):
+                photo = Photo.objects.create(title_en="A long descriptive photograph title " * 4,
+                                             alt_en="Long path", flickr_id=flickr_id,
+                                             source=image_upload((120, 80)))
+                self.assertEqual(photo.processing_status, "ready", photo.processing_error)
+                self.assertEqual(photo.renditions.count(), 2)
+                for rendition in photo.renditions.all():
+                    self.assertGreater(len(rendition.file.name), 100)
+                    # SQLite accepts oversized varchar values, so check the schema
+                    # limit even when this test runs without PostgreSQL.
+                    self.assertLessEqual(len(rendition.file.name),
+                                         PhotoRendition._meta.get_field("file").max_length)
+                    rendition.full_clean()
+                    self.assertTrue(rendition.file.storage.exists(rendition.file.name))
+
+    def test_original_upload_preserves_a_long_filename(self):
+        upload = image_upload((120, 80))
+        upload.name = "descriptive-original-photograph-" * 4 + ".jpg"
+        photo = Photo.objects.create(title_en="Original", alt_en="Original", source=upload)
+        photo.refresh_from_db()
+        self.assertEqual(photo.processing_status, "ready", photo.processing_error)
+        self.assertGreater(len(photo.source.name), 100)
+        self.assertEqual(Path(photo.source.name).name, upload.name)
+        Photo._meta.get_field("source").clean(photo.source, photo)
+        self.assertTrue(photo.source.storage.exists(photo.source.name))
+
     def test_multi_picture_jpeg_uses_only_the_primary_photo_without_private_metadata(self):
         stream = io.BytesIO()
         primary = Image.new("RGB", (120, 80), (30, 150, 40))
